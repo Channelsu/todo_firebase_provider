@@ -12,6 +12,19 @@ class _TodoListState extends State<TodoList> {
       body: ListView.builder(
         itemBuilder: (context, index) => ListTile(
           title: Text('todo'),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              IconButton(
+                icon: Icon(Icons.edit),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: Icon(Icons.delete),
+                onPressed: () {},
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
