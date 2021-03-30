@@ -17,7 +17,29 @@ class _TodoListState extends State<TodoList> {
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.edit),
-                onPressed: () {},
+                onPressed: () {
+                  // todoの更新
+                  showDialog(
+                    context: context, 
+                    builder: (context) => AlertDialog(
+                      title: TextField(),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text('キャンセル'),
+                          onPressed: () {
+                            Navigator.pop(context);  // ダイアログを閉じて元の画面に戻る
+                          },
+                        ),
+                        FlatButton(
+                          child: Text('更新'),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
               IconButton(
                 icon: Icon(Icons.delete),
@@ -28,7 +50,30 @@ class _TodoListState extends State<TodoList> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          // todo追加フォームを開く
+          // todo更新フォームも同様の物を使用
+          showDialog(
+            context: context, 
+            builder: (context) => AlertDialog(
+              title: TextField(),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('キャンセル'),
+                  onPressed: () {
+                    Navigator.pop(context);  // ダイアログを閉じて元の画面に戻る
+                  },
+                ),
+                FlatButton(
+                  child: Text('追加'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
+          );
+        },
         child: Icon(Icons.add),
       ),
     );
