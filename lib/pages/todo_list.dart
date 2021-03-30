@@ -25,15 +25,15 @@ class _TodoListState extends State<TodoList> {
                       title: TextField(),
                       actions: <Widget>[
                         FlatButton(
-                          child: Text('キャンセル'),
-                          onPressed: () {
-                            Navigator.pop(context);  // ダイアログを閉じて元の画面に戻る
-                          },
-                        ),
-                        FlatButton(
                           child: Text('更新'),
                           onPressed: () {
                             Navigator.pop(context);
+                          },
+                        ),
+                        FlatButton(
+                          child: Text('キャンセル'),
+                          onPressed: () {
+                            Navigator.pop(context);  // ダイアログを閉じて元の画面に戻る
                           },
                         ),
                       ],
@@ -42,7 +42,10 @@ class _TodoListState extends State<TodoList> {
                 },
               ),
               IconButton(
-                icon: Icon(Icons.delete),
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                ),
                 onPressed: () {},
               ),
             ],
@@ -59,15 +62,15 @@ class _TodoListState extends State<TodoList> {
               title: TextField(),
               actions: <Widget>[
                 FlatButton(
-                  child: Text('キャンセル'),
-                  onPressed: () {
-                    Navigator.pop(context);  // ダイアログを閉じて元の画面に戻る
-                  },
-                ),
-                FlatButton(
                   child: Text('追加'),
                   onPressed: () {
                     Navigator.pop(context);
+                  },
+                ),
+                FlatButton(
+                  child: Text('キャンセル'),
+                  onPressed: () {
+                    Navigator.pop(context);  // ダイアログを閉じて元の画面に戻る
                   },
                 ),
               ],
