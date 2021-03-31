@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todofirebaseprovider/models/todo.dart';
 import 'package:todofirebaseprovider/services/todo_service.dart';
 
 class TodoList extends StatefulWidget {
@@ -30,6 +31,11 @@ class _TodoListState extends State<TodoList> {
                           FlatButton(
                             child: Text('更新'),
                             onPressed: () {
+                              // テストのため
+                              var tempTodo = Todo(title: 'タイトルupd');
+                              tempTodo.id = '1';
+                              // updTodoメソッドを呼び出す
+                              context.read<TodoService>().updTodo(tempTodo);
                               Navigator.pop(context);  // ダイアログを閉じて元の画面に戻る
                             },
                           ),
@@ -71,7 +77,9 @@ class _TodoListState extends State<TodoList> {
                   child: Text('追加'),
                   onPressed: () {
                     // addTodoメソッドを呼び出す
-                    
+                    context.read<TodoService>().addTodo(Todo(
+                      title: 'タイトル'
+                    ));
                     Navigator.pop(context);  // ダイアログを閉じて元の画面に戻る
                   },
                 ),
