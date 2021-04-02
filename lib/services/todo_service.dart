@@ -12,7 +12,10 @@ class TodoService with ChangeNotifier {
     notifyListeners();  // UIの再描画
   }
 
-  removeTodo() {
+  removeTodo(id) {
+    // idが合致したtodoを削除
+    var index = todos.indexWhere((el) => el.id == id);
+    if (index != -1) todos.removeAt(index);
     notifyListeners();  // UIの再描画
   }
 
