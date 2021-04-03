@@ -55,7 +55,10 @@ class _TodoListState extends State<TodoList> {
                     Icons.delete,
                     color: Colors.red,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    // 1を一時的に指定
+                    context.read<TodoService>().removeTodo('1');
+                  },
                 ),
               ],
             ),
