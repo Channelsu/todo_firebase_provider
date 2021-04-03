@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:todofirebaseprovider/models/todo.dart';
@@ -6,6 +7,9 @@ class TodoService with ChangeNotifier {
 
   // todoの空配列を作成
   List<Todo> todos = [];
+
+  // firebaseを使用(インスタンス作成)
+  Firestore firestore = Firestore.instance;
 
   addTodo(Todo todo) {
     todos.add(todo);
