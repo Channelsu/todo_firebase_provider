@@ -11,8 +11,15 @@ class TodoService with ChangeNotifier {
   // firebaseを使用(インスタンス作成)
   Firestore firestore = Firestore.instance;
 
-  addTodo(Todo todo) {
-    todos.add(todo);
+  addTodo(Todo todo) async {
+    await firestore.collection('todos').add({
+      'title': todo.title,
+    }).then((value) {
+      // documentIDをセット
+      todo.id = value.documentID;
+      // todos配列にtodoを追加
+      todos.add(todo);
+    });
     notifyListeners();  // UIの再描画
   }
 
