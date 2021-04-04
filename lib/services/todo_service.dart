@@ -23,10 +23,15 @@ class TodoService with ChangeNotifier {
     notifyListeners();  // UIの再描画
   }
 
-  removeTodo(id) {
+  removeTodo(id) async {
     // idが合致したtodoを削除
     var index = todos.indexWhere((el) => el.id == id);
-    if (index != -1) todos.removeAt(index);
+    if (index != -1) {
+      // firebaseからtodoを削除
+      await firestore.collection('todos').document(id).delete();
+      // todos配列にtodoを追加
+      todos.removeAt(index);
+    }
     notifyListeners();  // UIの再描画
   }
 
