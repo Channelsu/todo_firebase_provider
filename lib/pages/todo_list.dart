@@ -22,7 +22,10 @@ class _TodoListState extends State<TodoList> {
                 IconButton(
                   icon: Icon(Icons.edit),
                   onPressed: () {
-                    TextEditingController _textController = TextEditingController();
+                    TextEditingController _textController =
+                      TextEditingController(
+                        text: value.todos[index].title
+                      );
                     // todoの更新
                     showDialog(
                       context: context, 
@@ -61,7 +64,7 @@ class _TodoListState extends State<TodoList> {
                   ),
                   onPressed: () {
                     // 1を一時的に指定
-                    context.read<TodoService>().removeTodo('1');
+                    context.read<TodoService>().removeTodo(value.todos[index].id);
                   },
                 ),
               ],
