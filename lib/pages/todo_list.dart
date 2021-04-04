@@ -15,25 +15,29 @@ class _TodoListState extends State<TodoList> {
       body: Consumer<TodoService>(
         builder: (context, value, child) => ListView.builder(
           itemBuilder: (context, index) => ListTile(
-            title: Text('todo'),
+            title: Text(value.todos[index].title), // todoのタイトルを表示
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 IconButton(
                   icon: Icon(Icons.edit),
                   onPressed: () {
+                    TextEditingController _textController = TextEditingController();
                     // todoの更新
                     showDialog(
                       context: context, 
                       builder: (context) => AlertDialog(
-                        title: TextField(),
+                        title: TextField(
+                          controller: _textController,
+                        ),
                         actions: <Widget>[
                           FlatButton(
                             child: Text('更新'),
                             onPressed: () {
                               // テストのため
-                              var tempTodo = Todo(title: 'タイトルupd');
-                              tempTodo.id = '1';
+                              var tempTodo = Todo(title: _textController.text);
+                              // idを更新
+                              tempTodo.id = value.todos[index].id;
                               // updTodoメソッドを呼び出す
                               context.read<TodoService>().updTodo(tempTodo);
                               Navigator.pop(context);  // ダイアログを閉じて元の画面に戻る
@@ -69,20 +73,23 @@ class _TodoListState extends State<TodoList> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          TextEditingController _textController = TextEditingController();
           // todo追加フォームを開く
           // todo更新フォームも同様の物を使用
           showDialog(
             context: context, 
             builder: (context) => AlertDialog(
-              title: TextField(),
+              title: TextField(
+                controller: _textController,
+              ),
               actions: <Widget>[
                 FlatButton(
                   child: Text('追加'),
                   onPressed: () {
                     // addTodoメソッドを呼び出す
-                    context.read<TodoService>().addTodo(Todo(
-                      title: 'タイトル'
-                    ));
+                    context.read<TodoService>().addTodo(
+                      Todo(title: _textController.text ?? 'タイトルなし')
+                    );
                     Navigator.pop(context);  // ダイアログを閉じて元の画面に戻る
                   },
                 ),
